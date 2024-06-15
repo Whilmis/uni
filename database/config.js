@@ -3,10 +3,11 @@ const mongoose = require('mongoose');
 
 
 const dbConnection = async() => {
+    const conector = 'mongodb+srv://whiluni:96KwV0aVsiCrf78x@universidadcluster.aigecdl.mongodb.net/unidb'
 
     try {
 
-        await mongoose.connect( process.env.MONGODB_CNN );
+        await mongoose.connect( conector);
     
         console.log('Base de datos online');
 
