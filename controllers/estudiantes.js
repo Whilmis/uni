@@ -1,5 +1,5 @@
 const {response} = require('express');
-const { Estudiante } = require('../models');
+const { Estudiante, Materia  } = require('../models');
 
 
 
@@ -35,7 +35,7 @@ const crearEstudiante = async(req, res= response) =>{
     const nombre = req.body.nombre.toUpperCase();
     const user_id= req.body.user_id;
     const carrera = req.body.carrera;
-    const materias = req.body.materias;
+    const materias = [ await Materia.find({ carrera :   `${nombre}`  })] ;
     const estudianteDB = await Estudiante.findOne({nombre});
     if(estudianteDB){
         return res.status(400).json({

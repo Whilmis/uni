@@ -28,17 +28,18 @@ const obtenerCarrera = async(req, res = reponse) =>{
 
     res.json(carrera);
 }
+   
+
 const crearCarrera = async(req, res= response) =>{
     const nombre = req.body.nombre.toUpperCase();
     const codigo = req.body.codigo;
-    const materia = req.body.materia;
+    const materia =  [ await Materia.find({ carrera :   `${nombre}`  })] ;
     const carreraDB = await Carrera.findOne({nombre});
     if(carreraDB){
         return res.status(400).json({
             msg:`La carrera ${carreraDB.nombre}, ya existe`
         })
     }
-
     
 
     const data = {
