@@ -17,6 +17,7 @@ class Server {
             productos:  '/api/productos',
             usuarios:   '/api/usuarios',
             materias:   '/api/materias',
+            materiaPs:   '/api/materiaPs',
             estudiantes: '/api/estudiantes',
             maestros: '/api/maestros',
             admins: '/api/admins'
@@ -60,6 +61,7 @@ class Server {
         this.app.use( this.paths.productos, require('../routes/productos'));
         this.app.use( this.paths.usuarios, require('../routes/usuarios'));
         this.app.use( this.paths.materias, require('../routes/materias'));
+        this.app.use( this.paths.materiaPs, require('../routes/materiaPs'));
         this.app.use( this.paths.estudiantes, require('../routes/estudiantes'));
         this.app.use( this.paths.maestros, require('../routes/maestros'));
      

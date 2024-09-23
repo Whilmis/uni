@@ -1,5 +1,5 @@
 const {response} = require('express');
-const { Maestro } = require('../models');
+const { Maestro, Materia } = require('../models');
 
 
 
@@ -35,7 +35,7 @@ const crearMaestros = async(req, res= response) =>{
     const nombre = req.body.nombre.toUpperCase();
     const user_id= req.body.user_id;
     const carrera = req.body.carrera;
-    const materias = req.body.materias;
+    const materias =  [ await Materia.find({ carrera :   `${carrera}`  })] ;
     const maestroDB = await Maestro.findOne({nombre});
     if(maestroDB){
         return res.status(400).json({

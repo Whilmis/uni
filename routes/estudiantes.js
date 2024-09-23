@@ -5,10 +5,10 @@ const {existeMateriaPorId} = require('../helpers/db-validators')
 const { check } = require('express-validator');
 const { validarJWT, validarCampos } = require('../middlewares');
 const {crearMateria, obtenerMaterias,obtenerMateria, actualizarMateria,borrarMateria } = require('../controllers/materias');*/
-const {existeEstudiantePorId} = require('../helpers/db-validators')
+const {existeEstudiantePorId,existeEstudiantePorIdUser} = require('../helpers/db-validators')
 const { check } = require('express-validator');
 const { validarJWT, validarCampos } = require('../middlewares');
-const {crearEstudiante, obtenerEstudiantes, obtenerEstudiante, actualizarEstudiante,borrarEstudiante } = require('../controllers/estudiantes');
+const {crearEstudiante, obtenerEstudiantes, obtenerEstudiante, actualizarEstudiante,borrarEstudiante,obtenerEstudianteIdUser } = require('../controllers/estudiantes');
 const router = Router();
 
 
@@ -19,6 +19,11 @@ router.get('/:id',[
     check('id').custom( existeEstudiantePorId),
     validarCampos
 ],obtenerEstudiante);
+
+router.get('/user/:id',[
+    check('id').custom( existeEstudiantePorIdUser),
+    validarCampos
+],obtenerEstudianteIdUser);
 
 
 router.post('/', [
@@ -32,8 +37,6 @@ router.post('/', [
 
 router.put('/:id', [
     validarJWT,
-    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-    check('user_id', 'El user_id es obligatorio').not().isEmpty(),
     validarCampos
 ],actualizarEstudiante);
 

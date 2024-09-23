@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const EstudianteSchema = Schema({
+const MateriaPSchema = Schema({
     nombre: {
         type: String,
         required: [true, 'El nombre es obligatorio']
@@ -11,37 +11,29 @@ const EstudianteSchema = Schema({
         required: true
 
     },
-    
+
+
     usuario:{
         type: Schema.Types.ObjectId,
         ref:'Usuario',
         required: true
     },
-    user_id: {
+    tipo: {
         type: String,
-        required: [true, 'El user id es obligatorio']
+        required: true,
+        default: 'ABIERTA',
+        emun: ['ABIERTA','PENDIENTE', 'APROVADA','RECHAZADA','ENCURSO']
+    }
+    ,
+    clave: {
+        type: String,
+        required: [true, 'La clave es obligatoria']
     },
+
     carrera: {
         type: Schema.Types.Array,
         required: [true, 'la carrera es obligatoria ']
-    },
-    materias: {
-        type: Schema.Types.Array,
-        required: [true, 'las materias son obligatorias ']
-    },
-    pago:{
-        type: Boolean,
-        default: true,
-        required: true
-
-    },
-    seleccion:{
-        type: Boolean,
-        default: true,
-        required: true
-
     }
-
     
 
 });
@@ -49,4 +41,4 @@ const EstudianteSchema = Schema({
 
 
 
-module.exports = model( 'Estudiante', EstudianteSchema );
+module.exports = model( 'MateriaP', MateriaPSchema );

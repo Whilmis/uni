@@ -7,6 +7,7 @@ const Server = require('./server');
 const Usuario = require('./usuario');
 const Carrera = require('./carrera');
 const Materia = require('./materia');
+const MateriaP = require('./materiaP');
 const Estudiante = require('./estudiante');
 const Maestro = require('./maestro');
 
@@ -20,6 +21,7 @@ module.exports = {
     Server,
     Usuario,
     Materia,
+    MateriaP,
     Estudiante,
     Maestro
 

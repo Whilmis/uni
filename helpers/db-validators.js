@@ -74,6 +74,13 @@ const existeEstudiantePorId = async(id) =>{
     }
 
 }
+const existeEstudiantePorIdUser = async(id) =>{
+    const existeEstudiante = await Estudiante.findOne({user_id: id});
+    if ( !existeEstudiante ) {
+        throw new Error(`El id user no existe ${ id }`);
+    }
+
+}
 
 const existeMaestroPorId = async(id) =>{
     const existeMaestro = await Maestro.findById(id);
@@ -92,6 +99,7 @@ module.exports = {
     existeCarreraPorId,
     existeMateriaPorId,
     existeEstudiantePorId,
-    existeMaestroPorId
+    existeMaestroPorId,
+    existeEstudiantePorIdUser 
 }
 

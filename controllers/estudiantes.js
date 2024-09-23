@@ -31,11 +31,19 @@ const obtenerEstudiante = async(req, res = reponse) =>{
  
      res.json(materia);
  }
+
+ const obtenerEstudianteIdUser = async(req, res = reponse) =>{
+    const {id} = req.params;
+    const materia = await Estudiante.findOne({user_id:id})
+ 
+ 
+     res.json(materia);
+ }
 const crearEstudiante = async(req, res= response) =>{
     const nombre = req.body.nombre.toUpperCase();
     const user_id= req.body.user_id;
     const carrera = req.body.carrera;
-    const materias = [ await Materia.find({ carrera :   `${nombre}`  })] ;
+    const materias = [ await Materia.find({ carrera :   `${carrera[0]}`  })] ;
     const estudianteDB = await Estudiante.findOne({nombre});
     if(estudianteDB){
         return res.status(400).json({
@@ -61,8 +69,8 @@ const crearEstudiante = async(req, res= response) =>{
 const actualizarEstudiante = async(req, res = response) =>{
     const {id} = req.params;
     const {estado, usuario, ...data } = req.body;
-    data.nombre = data.nombre.toUpperCase();
-    data.usuario = req.usuario._id;
+    data.nombre? data.nombre = data.nombre.toUpperCase(): '' ;
+    data.usuario ?  data.usuario = req.usuario._id:  '';
 
     const estudiante = await Estudiante.findByIdAndUpdate(id, data, {new: true});
     res.json(estudiante);
@@ -88,6 +96,7 @@ module.exports = {
     obtenerEstudiantes,
     obtenerEstudiante,
     borrarEstudiante,
-    actualizarEstudiante
+    actualizarEstudiante,
+    obtenerEstudianteIdUser
 
 }
