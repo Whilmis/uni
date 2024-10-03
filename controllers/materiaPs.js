@@ -38,7 +38,7 @@ const crearMateriaP = async(req, res= response) =>{
     const carreraDB = await MateriaP.findOne({nombre});
     if(carreraDB){
         return res.status(400).json({
-            msg:`La carrera ${carreraDB.nombre}, ya existe`
+            msg:`La carrera ${carreraDB.nombre}, ya existe ahora`
         })
     }
 
