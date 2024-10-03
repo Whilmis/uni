@@ -12,7 +12,7 @@ const obtenerMateriasP = async(req, res = reponse) =>{
     const [ total, materias ] = await Promise.all([
         MateriaP.countDocuments(query),
         MateriaP.find(query)
-            .populate('usuario', 'rol')
+            .populate('usuario')
             .skip( Number( desde ) )
             .limit(Number( limite ))
     ]);

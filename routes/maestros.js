@@ -1,9 +1,9 @@
 const { Router, response } = require('express');
 
-const {existeMaestroPorId} = require('../helpers/db-validators')
+const {existeMaestroPorId,existeMaestroPorIdUser} = require('../helpers/db-validators')
 const { check } = require('express-validator');
 const { validarJWT, validarCampos } = require('../middlewares');
-const {crearMaestros, obtenerMaestros, obtenerMaestro, actualizarMaestro,borrarMaestro } = require('../controllers/maestros');
+const {crearMaestros, obtenerMaestros, obtenerMaestro, actualizarMaestro,borrarMaestro,obtenerMaestroIdUser } = require('../controllers/maestros');
 const router = Router();
 
 
@@ -14,6 +14,11 @@ router.get('/:id',[
     check('id').custom( existeMaestroPorId),
     validarCampos
 ],obtenerMaestro);
+
+router.get('/user/:id',[
+    check('id').custom( existeMaestroPorIdUser),
+    validarCampos
+],obtenerMaestroIdUser);
 
 
 router.post('/', [
@@ -31,6 +36,8 @@ router.put('/:id', [
     check('user_id', 'El user_id es obligatorio').not().isEmpty(),
     validarCampos
 ],actualizarMaestro);
+
+
 
 router.delete('/:id',[
     validarJWT,

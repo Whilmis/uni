@@ -30,7 +30,7 @@ router.post('/',[
 
 router.put('/:id', [
     validarJWT,
-    check('tipo', 'El nombre es obligatorio').not().isEmpty(),
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     validarCampos
 ],actualizarMateriaP);
 

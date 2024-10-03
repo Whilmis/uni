@@ -35,7 +35,7 @@ const crearMaestros = async(req, res= response) =>{
     const nombre = req.body.nombre.toUpperCase();
     const user_id= req.body.user_id;
     const carrera = req.body.carrera;
-    const materias =  [ await Materia.find({ carrera :   `${carrera}`  })] ;
+    const materias = [ await Materia.find({ carrera :   `${carrera[0]}`  })] ;
     const maestroDB = await Maestro.findOne({nombre});
     if(maestroDB){
         return res.status(400).json({
@@ -64,11 +64,18 @@ const actualizarMaestro = async(req, res = response) =>{
     data.nombre = data.nombre.toUpperCase();
     data.usuario = req.usuario._id;
 
-    const estudiante = await Maestro.findByIdAndUpdate(id, data, {new: true});
-    res.json(estudiante);
+    const maestro = await Maestro.findByIdAndUpdate(id, data, {new: true});
+    res.json(maestro);
 
      
 }
+const obtenerMaestroIdUser = async(req, res = reponse) =>{
+    const {id} = req.params;
+    const maestro = await Maestro.findOne({user_id:id})
+ 
+ 
+     res.json(maestro);
+ }
 
 const borrarMaestro = async(req, res = response) =>{
     const {id} = req.params;
@@ -88,6 +95,7 @@ module.exports = {
     obtenerMaestros,
     obtenerMaestro,
     borrarMaestro,
-    actualizarMaestro
+    actualizarMaestro,
+    obtenerMaestroIdUser 
 
 }
