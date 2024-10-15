@@ -42,6 +42,7 @@ const crearMateriaP = async(req, res= response) =>{
         nombre,
         usuario: req.usuario._id,
         clave,
+        tipo,
         carrera,
      
 
