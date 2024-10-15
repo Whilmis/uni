@@ -35,7 +35,7 @@ const crearMaestros = async(req, res= response) =>{
     const nombre = req.body.nombre.toUpperCase();
     const user_id= req.body.user_id;
     const carrera = req.body.carrera;
-    const materias = [ await Materia.find({ carrera :   `${carrera[0]}`  })] ;
+    const materias =  await Materia.find({ carrera :   `${carrera[0]}`  }) ;
     const maestroDB = await Maestro.findOne({nombre});
     if(maestroDB){
         return res.status(400).json({

@@ -43,7 +43,7 @@ const crearEstudiante = async(req, res= response) =>{
     const nombre = req.body.nombre.toUpperCase();
     const user_id= req.body.user_id;
     const carrera = req.body.carrera;
-    const materias = [ await Materia.find({ carrera :   `${carrera[0]}`  })] ;
+    const materias =  await Materia.find({ carrera :   `${carrera[0]}`  }) ;
     const estudianteDB = await Estudiante.findOne({nombre});
     if(estudianteDB){
         return res.status(400).json({
