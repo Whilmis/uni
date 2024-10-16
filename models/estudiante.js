@@ -37,7 +37,7 @@ const EstudianteSchema = Schema({
     },
     seleccion:{
         type: Boolean,
-        default: true,
+        default: false,
         required: true
 
     }

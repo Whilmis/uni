@@ -28,6 +28,12 @@ const MaestroSchema = Schema({
     materias: {
         type: Schema.Types.Array,
         required: [true, 'las materias son obligatorias ']
+    },
+    seleccion:{
+        type: Boolean,
+        default: false,
+        required: true
+
     }
     
 
