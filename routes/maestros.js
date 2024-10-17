@@ -32,8 +32,6 @@ router.post('/', [
 
 router.put('/:id', [
     validarJWT,
-    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-    check('user_id', 'El user_id es obligatorio').not().isEmpty(),
     validarCampos
 ],actualizarMaestro);
 
