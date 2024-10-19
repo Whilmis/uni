@@ -28,6 +28,11 @@ const UsuarioSchema = Schema({
         type: Boolean,
         default: true
     },
+    nota: {
+        type: Schema.Types.Array,
+        default: [0,0,0,0],
+        required: [true, 'la nota es obligatoria ']
+    },
     google: {
         type: Boolean,
         default: false
